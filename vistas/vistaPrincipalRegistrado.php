@@ -55,6 +55,21 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
+                <?php
+                if (isset($_REQUEST['registrar'])) {
+                    ?>
+                <div id="message">
+                    <div style="padding: 5px;">
+                        <div id="inner-message" class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            Usuario registrado correctamente
+                        </div>
+                    </div>
+                </div>
+                <?php
+
+            }
+            ?>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="d-block" style="background-color: rgb(5,45,90);">
@@ -133,7 +148,7 @@
                 </div>
                 <h3>Productos en promoción</h3>
                 <hr>
-                
+
                 <?php
                 if (count($productos) == 0) {
                     echo '<h2 style="text-align:center;">No hay productos con esas caracteristicas</h2>';

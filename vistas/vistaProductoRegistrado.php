@@ -56,6 +56,21 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
+                <?php
+                if (isset($_REQUEST['registrar'])) {
+                    ?>
+                <div id="message">
+                    <div style="padding: 5px;">
+                        <div id="inner-message" class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            Usuario registrado correctamente
+                        </div>
+                    </div>
+                </div>
+                <?php
+
+            }
+            ?>
                 <!-- Logo de la pagina web -->
                 <div class="row">
                     <div class="col-lg-12">
