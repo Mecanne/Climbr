@@ -10,7 +10,15 @@ if(isset($_REQUEST['salir'])){
 }else if(isset($_REQUEST['perfil'])){
     include 'vistas/vistaPerfil.php';
 }else if(isset($_REQUEST['editar'])){
-    include 'vistas/vistaEditar.php';
+    if(isset($_REQUEST['editarperfil'])){
+        if($_REQUEST['contrasena'] != ''){
+            actualizarPerfil($_SESSION['email'],$_REQUEST['contrasena'],$_REQUEST['nombre'],$_REQUEST['direccion']);
+            $usuario = sacarUsuario($_SESSION['email']);
+        }
+        include 'vistas/vistaPerfil.php';
+    }else{
+        include 'vistas/vistaEditar.php';
+    }
 }else{
     if (isset($_REQUEST['producto'])) {
         include 'vistas/vistaProductoRegistrado.php';

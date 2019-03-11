@@ -149,7 +149,8 @@
                 </nav>
 
                 <!-- Galeria de productos -->
-
+                <h3>Productos</h3>
+                <hr>
                 <?php
                 if (count($productos) == 0) {
                     echo '<h2 style="text-align:center;">No hay productos con esas caracteristicas</h2>';

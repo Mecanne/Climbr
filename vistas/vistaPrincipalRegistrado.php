@@ -131,6 +131,40 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
+                <h3>Productos en promoción</h3>
+                <hr>
+                
+                <?php
+                if (count($productos) == 0) {
+                    echo '<h2 style="text-align:center;">No hay productos con esas caracteristicas</h2>';
+                }
+                $numeroProducto = 0;
+                for ($k = 0; $k < $cantidadFilas; $k++) {
+                    echo '<div class="row">';
+                    if ($k + 1 == $cantidadFilas && count($productos) % 4 > 0) {
+                        $productosEnFila = count($productos) % 4;
+                    } else {
+                        $productosEnFila = 4;
+                    }
+                    for ($i = 0; $i < $productosEnFila; $i++) {
+                        echo '<div class="col-md-3">
+                                    <div class="thumbnail">
+                                        <a href="?producto=' . $productos[$numeroProducto]['IDProducto'] . '"> <img src="' . $productos[$numeroProducto]['RutaImagen'] . '" alt="Fjords" style="width:100%;"></a>
+                                        <div class="caption">
+                                            <p>' . $productos[$numeroProducto]['NombreProducto'] . '</p>
+                                        </div>
+                                        <div class="caption text-center">
+                                        <h4>' . $productos[$numeroProducto]['Descuento'] . ' % de descuento</h4>
+                                        <h4><span style="color:red;text-decoration:line-through;">' . $productos[$numeroProducto]['Precio']  . ' €</span> - <span style="color:dodgerblue;">' . number_format($productos[$numeroProducto]['Precio'] * ((100 - $productos[$numeroProducto]['Descuento']) / 100), 2) . ' €</span></h4>
+                                        </div>
+                                    </div>
+                                </div>';
+
+                        $numeroProducto++;
+                    }
+                    echo '</div>';
+                }
+                ?>
             </div>
         </div>
         <!-- /#page-content-wrapper -->
@@ -143,74 +177,6 @@
             </div>
 
         </footer>
-        <!-- Modal Acceso -->
-        <div id="modal-acceso" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Acceso</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            <form action="/action_page.php">
-                                <div class="form-group">
-                                    <label for="email">Email address:</label>
-                                    <input type="email" class="form-control" id="email" name="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="contrasena">Contraseña:</label>
-                                    <input type="password" class="form-control" id="pwd" name="contrasena">
-                                </div>
-
-                                <button type="button" class="btn btn-info btn-md" data-dismiss="modal">Acceder</button>
-                                <button type="button" class="btn btn-danger btn-md" data-dismiss="modal">Cancelar</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Modal Registro -->
-        <div id="modal-registro" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Registro</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            <form action="/action_page.php">
-                                <div class="form-group">
-                                    <label for="email">Email:</label>
-                                    <input type="email" class="form-control" id="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="pwd">Contraseña:</label>
-                                    <input type="password" class="form-control" id="pwd">
-                                </div>
-                                <div class="form-group">
-                                    <label for="pwd">Confirmar contraseña:</label>
-                                    <input type="password" class="form-control" id="pwd">
-                                </div>
-                                <div style="display:flex;justify-content:space-around;">
-                                    <button type="button" class="btn btn-info btn-lg" data-dismiss="modal">Registrar</button>
-                                    <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Cancelar</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
     </div>
 </body>
 

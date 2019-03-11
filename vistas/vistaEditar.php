@@ -72,13 +72,13 @@
                     <div class="panel-body">
                         <form action="/Climbr/?editar" method="POST">
                             <?php
-                            echo "<h4>Email: </h4><input type=\"text\" class=\"form-control\" value=\"$usuario[EmailUsuario]\" name=\"email\">";
-                            echo "<h4>Contraseña: </h4><input type=\"text\" class=\"form-control\" value=\"$usuario[ContrasenaUsuario]\" name=\"email\">";
-                            echo "<h4>Nombre: </h4><input type=\"text\" class=\"form-control\" value=\"$usuario[NombreUsuario]\" name=\"email\">";
-                            echo "<h4>Direccion: </h4><input type=\"text\" class=\"form-control\" value=\"$usuario[DireccionUsuario]\" name=\"email\">";
+                            echo "<h4>Email: </h4><input type=\"text\" class=\"form-control\" value=\"$usuario[EmailUsuario]\" disabled>";
+                            echo "<h4>Contraseña: </h4><input type=\"password\" class=\"form-control\" value=\"$usuario[ContrasenaUsuario]\" name=\"contrasena\">";
+                            echo "<h4>Nombre: </h4><input type=\"text\" class=\"form-control\" value=\"$usuario[NombreUsuario]\" name=\"nombre\">";
+                            echo "<h4>Direccion: </h4><input type=\"text\" class=\"form-control\" value=\"$usuario[DireccionUsuario]\" name=\"direccion\">";
                             ?>
                             <hr>
-                            <input class="btn btn-primary" type="submit" value="Editar datos" name="editar">
+                            <input class="btn btn-primary" type="submit" value="Editar datos" name="editarperfil">
                         </form>
                     </div>
                 </div>

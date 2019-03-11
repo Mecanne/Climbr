@@ -43,3 +43,15 @@ function existeUsuario($email, $contrasena)
     }
 }
 
+function actualizarPerfil($emailUsuario,$contrasena,$nombre,$direccion){
+    $conexion = crearConexion('escalada');
+    mysqli_query($conexion, "UPDATE usuarios
+                                SET ContrasenaUsuario = '$contrasena',
+                                    NombreUsuario = '$nombre',
+                                    DireccionUsuario = '$direccion'
+                                WHERE EmailUsuario = '$emailUsuario'")
+        or $registrado = false;
+    cerrarConexion($conexion);
+    return true;
+}
+
