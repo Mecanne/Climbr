@@ -17,24 +17,33 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <div style="display:block;width:100%;text-align:center;">
-                <h2 style="color:white;">ACCESO</h2>
+                <h2 style="color:white;">PERFIL</h2>
             </div>
-            <div class="container-fluid">
-                <div class="btn-group-vertical btn-group-lg" style="width:100%;">
-                    <button data-toggle="modal" data-target="#modal-acceso" class="btn btn-primary">Acceder</button>
-                    <button data-toggle="modal" data-target="#modal-registro" class="btn btn-warning">Registrarse</button>
-                </div>
+            <div style="display:block;width:100%;">
+                <ul style="text-decoration:none;list-style:none;">
+                    <li><a href="?perfil"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
+                    <li><a href="?salir"><span class="glyphicon glyphicon-off"></span> Cerrar sesion</a></li>
+                </ul>
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <h2 style="color:white;">CATEGORIAS</h2>
                 </li>
                 <li>
-                    <a href="/Climbr">TODO</a>
+                    <a href="/Climbr/?mostrar=todo">TODO</a>
                 </li>
                 <?php
                 for ($i = 0; $i < count($categorias); $i++) {
-                    echo '<li><a href="/Climbr?categoria=' . $categorias[$i]['IDCategoria'] . '">';
+                    if (isset($_REQUEST['categoria'])) {
+                        if ($categorias[$i]['IDCategoria'] == $_REQUEST['categoria']) {
+                            $textActive = ' style="color:white;font-weight:bold;"';
+                        } else {
+                            $textActive = '';
+                        }
+                    } else {
+                        $textActive = '';
+                    }
+                    echo '<li><a href="/Climbr?categoria=' . $categorias[$i]['IDCategoria'] . '"' .  $textActive . '>';
                     echo $categorias[$i]['NombreCategoria'];
                     echo '</a></li>';
                 }
@@ -49,7 +58,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="d-block" style="background-color: rgb(5,45,90);">
-                            <img class="img-responsive" src="img/logo.png" alt="LOGO">
+                            <a href="/Climbr"><img class="img-responsive" src="img/logo.png" alt="LOGO"></a>
                         </div>
 
                     </div>
@@ -62,7 +71,7 @@
                                     <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="/Climbr">TODO</a>
+                                        <a href="/Climbr/?mostrar=todo">TODO</a>
                                     </li>
                                     <?php
                                     for ($i = 0; $i < count($categorias); $i++) {
@@ -74,13 +83,9 @@
                                 </ul>
                             </li>
                         </div>
-                        <ul class="nav navbar-nav navbar-right" style="margin-right:10px;">
-                            <li>
-                                <div class="btn-group" style="width:100%;">
-                                    <button data-toggle="modal" data-target="#modal-acceso" class="btn btn-primary navbar-btn">Acceder</button>
-                                    <button data-toggle="modal" data-target="#modal-registro" class="btn btn-warning navbar-btn">Registrarse</button>
-                                </div>
-                            </li>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="?perfil"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
+                            <li><a href="?salir"><span class="glyphicon glyphicon-off"></span> Cerrar sesion</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -91,8 +96,16 @@
                         </div>
                         <div class="nav navbar-nav">
                             <form class="navbar-form navbar-left" action="">
+                                <?php
+                                if (isset($_REQUEST['categoria'])) {
+                                    echo '<input type="hidden" name="categoria" value="' . $_REQUEST['categoria'] . '">';
+                                }
+                                if (isset($_REQUEST['orden'])) {
+                                    echo '<input type="hidden" name="orden" value="' . $_REQUEST['orden'] . '">';
+                                }
+                                ?>
                                 <div class="input-group">
-                                    <input type="busqueda" class="form-control" placeholder="Buscar...">
+                                    <input type="text" name="buscar" class="form-control" placeholder="Buscar...">
                                     <div class="input-group-btn">
                                         <button class="btn btn-default" type="submit">
                                             <i class="glyphicon glyphicon-search"></i>
@@ -106,8 +119,16 @@
                         </div>
                         <div class="nav navbar-nav">
                             <form class="navbar-form navbar-rigth" action="">
+                                <?php
+                                if (isset($_REQUEST['categoria'])) {
+                                    echo '<input type="hidden" name="categoria" value="' . $_REQUEST['categoria'] . '">';
+                                }
+                                if (isset($_REQUEST['buscar'])) {
+                                    echo '<input type="hidden" name="buscar" value="' . $_REQUEST['buscar'] . '">';
+                                }
+                                ?>
                                 <div class="input-group">
-                                    <select name="" id="" class="form-control">
+                                    <select name="orden" id="" class="form-control">
                                         <option value="alf">Orden alfabético</option>
                                         <option value="asc">Precio ascendente</option>
                                         <option value="desc">Precio descendente</option>
@@ -128,10 +149,18 @@
                 <!-- Galeria de productos -->
 
                 <?php
+                if (count($productos) == 0) {
+                    echo '<h2 style="text-align:center;">No hay productos con esas caracteristicas</h2>';
+                }
                 $numeroProducto = 0;
                 for ($k = 0; $k < $cantidadFilas; $k++) {
                     echo '<div class="row">';
-                    for ($i = 0; $i < 4; $i++) {
+                    if ($k + 1 == $cantidadFilas && count($productos) % 4 > 0) {
+                        $productosEnFila = count($productos) % 4;
+                    } else {
+                        $productosEnFila = 4;
+                    }
+                    for ($i = 0; $i < $productosEnFila; $i++) {
                         echo '<div class="col-md-3">
                                     <div class="thumbnail">
                                         <a href="?producto=' . $productos[$numeroProducto]['IDProducto'] . '"> <img src="' . $productos[$numeroProducto]['RutaImagen'] . '" alt="Fjords" style="width:100%;"></a>
@@ -162,74 +191,6 @@
             </div>
 
         </footer>
-        <!-- Modal Acceso -->
-        <div id="modal-acceso" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Acceso</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            <form action="/action_page.php">
-                                <div class="form-group">
-                                    <label for="email">Email address:</label>
-                                    <input type="email" class="form-control" id="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="pwd">Password:</label>
-                                    <input type="password" class="form-control" id="pwd">
-                                </div>
-
-                                <button type="button" class="btn btn-info btn-md" data-dismiss="modal">Acceder</button>
-                                <button type="button" class="btn btn-danger btn-md" data-dismiss="modal">Cancelar</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Modal Registro -->
-        <div id="modal-registro" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Registro</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            <form action="/action_page.php">
-                                <div class="form-group">
-                                    <label for="email">Email:</label>
-                                    <input type="email" class="form-control" id="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="pwd">Contraseña:</label>
-                                    <input type="password" class="form-control" id="pwd">
-                                </div>
-                                <div class="form-group">
-                                    <label for="pwd">Confirmar contraseña:</label>
-                                    <input type="password" class="form-control" id="pwd">
-                                </div>
-                                <div style="display:flex;justify-content:space-around;">
-                                    <button type="button" class="btn btn-info btn-lg" data-dismiss="modal">Registrar</button>
-                                    <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Cancelar</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
     </div>
 </body>
 

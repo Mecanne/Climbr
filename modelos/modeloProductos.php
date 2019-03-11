@@ -81,3 +81,10 @@ function sacarProductosCategoria($idcategoria, $orden = '',$busqueda = '')
     cerrarConexion($conexion);
     return $productos;
 }
+
+function sacarProducto($idProducto){
+    $conexion = crearConexion('escalada');
+    $registros = mysqli_query($conexion,"SELECT * FROM productos WHERE IDProducto = $idProducto");
+    cerrarConexion($conexion);
+    return mysqli_fetch_array($registros);
+}

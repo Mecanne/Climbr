@@ -34,16 +34,16 @@
                 </li>
                 <?php
                 for ($i = 0; $i < count($categorias); $i++) {
-                    if(isset($_REQUEST['categoria'])){
-                        if($categorias[$i]['IDCategoria'] == $_REQUEST['categoria']){
+                    if (isset($_REQUEST['categoria'])) {
+                        if ($categorias[$i]['IDCategoria'] == $_REQUEST['categoria']) {
                             $textActive = ' style="color:white;font-weight:bold;"';
-                        }else{
-                            $textActive = ''; 
+                        } else {
+                            $textActive = '';
                         }
-                    }else{
+                    } else {
                         $textActive = '';
                     }
-                    echo '<li><a href="/Climbr?categoria=' . $categorias[$i]['IDCategoria'] .'"' .  $textActive . '>';
+                    echo '<li><a href="/Climbr?categoria=' . $categorias[$i]['IDCategoria'] . '"' .  $textActive . '>';
                     echo $categorias[$i]['NombreCategoria'];
                     echo '</a></li>';
                 }
@@ -58,7 +58,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="d-block" style="background-color: rgb(5,45,90);">
-                            <img class="img-responsive" src="img/logo.png" alt="LOGO">
+                            <a href="/Climbr"><img class="img-responsive" src="img/logo.png" alt="LOGO"></a>
                         </div>
 
                     </div>
@@ -101,12 +101,12 @@
                         <div class="nav navbar-nav">
                             <form class="navbar-form navbar-left" action="">
                                 <?php
-                                    if(isset($_REQUEST['categoria'])){
-                                        echo '<input type="hidden" name="categoria" value="'. $_REQUEST['categoria'] .'">';
-                                    }
-                                    if(isset($_REQUEST['orden'])){
-                                        echo '<input type="hidden" name="orden" value="'. $_REQUEST['orden'] .'">';
-                                    }
+                                if (isset($_REQUEST['categoria'])) {
+                                    echo '<input type="hidden" name="categoria" value="' . $_REQUEST['categoria'] . '">';
+                                }
+                                if (isset($_REQUEST['orden'])) {
+                                    echo '<input type="hidden" name="orden" value="' . $_REQUEST['orden'] . '">';
+                                }
                                 ?>
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="buscar" placeholder="Buscar...">
@@ -124,12 +124,12 @@
                         <div class="nav navbar-nav">
                             <form class="navbar-form navbar-rigth" action="">
                                 <?php
-                                    if(isset($_REQUEST['categoria'])){
-                                        echo '<input type="hidden" name="categoria" value="'. $_REQUEST['categoria'] .'">';
-                                    }
-                                    if(isset($_REQUEST['buscar'])){
-                                        echo '<input type="hidden" name="buscar" value="'. $_REQUEST['buscar'] .'">';
-                                    }
+                                if (isset($_REQUEST['categoria'])) {
+                                    echo '<input type="hidden" name="categoria" value="' . $_REQUEST['categoria'] . '">';
+                                }
+                                if (isset($_REQUEST['buscar'])) {
+                                    echo '<input type="hidden" name="buscar" value="' . $_REQUEST['buscar'] . '">';
+                                }
                                 ?>
                                 <div class="input-group">
                                     <select name="orden" id="" class="form-control">
@@ -151,15 +151,15 @@
                 <!-- Galeria de productos -->
 
                 <?php
-                if(count($productos) == 0){
+                if (count($productos) == 0) {
                     echo '<h2 style="text-align:center;">No hay productos con esas caracteristicas</h2>';
                 }
                 $numeroProducto = 0;
                 for ($k = 0; $k < $cantidadFilas; $k++) {
                     echo '<div class="row">';
-                    if($k + 1 == $cantidadFilas && count($productos)%4 > 0){
-                        $productosEnFila = count($productos)%4;
-                    }else{
+                    if ($k + 1 == $cantidadFilas && count($productos) % 4 > 0) {
+                        $productosEnFila = count($productos) % 4;
+                    } else {
                         $productosEnFila = 4;
                     }
                     for ($i = 0; $i < $productosEnFila; $i++) {
@@ -204,17 +204,17 @@
                     </div>
                     <div class="modal-body">
                         <div class="container-fluid">
-                            <form action="/action_page.php">
+                            <form action="" method="POST">
                                 <div class="form-group">
-                                    <label for="email">Email address:</label>
-                                    <input type="email" class="form-control" id="email">
+                                    <label for="email">Email:</label>
+                                    <input type="email" class="form-control" id="email" name="email">
                                 </div>
                                 <div class="form-group">
-                                    <label for="pwd">Password:</label>
-                                    <input type="password" class="form-control" id="pwd">
+                                    <label for="contrasena">Contraseña:</label>
+                                    <input type="password" class="form-control" id="contrasena" name="contrasena">
                                 </div>
 
-                                <button type="button" class="btn btn-info btn-md" data-dismiss="modal">Acceder</button>
+                                <button type="submit" class="btn btn-info btn-md" name="acceder">Acceder</button>
                                 <button type="button" class="btn btn-danger btn-md" data-dismiss="modal">Cancelar</button>
                             </form>
                         </div>
@@ -236,21 +236,21 @@
                     </div>
                     <div class="modal-body">
                         <div class="container-fluid">
-                            <form action="/action_page.php">
+                            <form action="" method="POST">
                                 <div class="form-group">
                                     <label for="email">Email:</label>
-                                    <input type="email" class="form-control" id="email">
+                                    <input type="email" class="form-control" id="email" name="email">
                                 </div>
                                 <div class="form-group">
-                                    <label for="pwd">Contraseña:</label>
-                                    <input type="password" class="form-control" id="pwd">
+                                    <label for="contrasena">Contraseña:</label>
+                                    <input type="password" class="form-control" id="contrasena" name="contrasena">
                                 </div>
                                 <div class="form-group">
-                                    <label for="pwd">Confirmar contraseña:</label>
-                                    <input type="password" class="form-control" id="pwd">
+                                    <label for="confirmacionContrasena">Confirmar contraseña:</label>
+                                    <input type="password" class="form-control" id="confirmacionContrasena" name="confirmacionContrasena">
                                 </div>
                                 <div style="display:flex;justify-content:space-around;">
-                                    <button type="button" class="btn btn-info btn-lg" data-dismiss="modal">Registrar</button>
+                                    <button type="submit" class="btn btn-info btn-lg" name="registrar">Registrar</button>
                                     <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Cancelar</button>
                                 </div>
                             </form>

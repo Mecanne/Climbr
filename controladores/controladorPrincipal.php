@@ -4,49 +4,63 @@
 // Cargamos las categorias
 $categorias = sacarCategorias();
 
-//Cargamos los productos
-if (isset($_GET['categoria'])) {
-    if(isset($_REQUEST['orden'])){
-        if(isset($_REQUEST['buscar'])){
-            $productos = sacarProductosCategoria($_REQUEST['categoria'],$_REQUEST['orden'],$_REQUEST['buscar']);
-        }else{
-            $productos = sacarProductosCategoria($_REQUEST['categoria'],$_REQUEST['orden']);
-        }
-    }else{
-        if(isset($_REQUEST['buscar'])){
-            $productos = sacarProductosCategoria($_REQUEST['categoria'],'',$_REQUEST['buscar']);
-        }else{
-            $productos = sacarProductosCategoria($_REQUEST['categoria']);
-        }
+//Comprobamos si el ususario quiere iniciar sesión
+if(isset($_REQUEST['acceder'])){
+    if(existeUsuario($_REQUEST['email'],$_REQUEST['contrasena'])){
+        $_SESSION['email'] = $_REQUEST['email'];
     }
-} else {
-    if(isset($_REQUEST['orden'])){
-        if(isset($_REQUEST['buscar'])){
-            $productos = sacarProductos($_REQUEST['orden'],$_REQUEST['buscar']);
+}else if(isset($_REQUEST['registrar'])){
+    if($_REQUEST['confirmacionContrasena'] == $_REQUEST['contrasena'] && $_REQUEST['email'] != '' && $_REQUEST['contrasena'] != ''){
+        if(registrarUsuario($_REQUEST['email'],$_REQUEST['contrasena'])){
+            $registrado = true;
+            $_SESSION['email'] = $_REQUEST['email'];
         }else{
-            $productos = sacarProductos($_REQUEST['orden']);
+            $registrado = false;
         }
     }else{
-        if(isset($_REQUEST['buscar'])){
-            $productos = sacarProductos('',$_REQUEST['buscar']);
-        }else{
-            $productos = sacarProductos();
-        }
+        $registrado = false;
     }
 }
 
-$cantidadFilas = ceil(count($productos) / 4);
-
-if (isset($_SESSION['usuario'])) {
-    if(!isset($_REQUEST['mostrar'])){
-        include 'vistas/vistaPrincipalRegistrado.php';
-    }else{
-        include 'vistas/vistaProductosRegistrado.php';
-    }
+// Cargamos los productos
+if (isset($_REQUEST['producto'])) {
+    $producto = sacarProducto($_REQUEST['producto']);
 } else {
-    if(isset($_REQUEST['mostrar']) || isset($_REQUEST['categoria']) || isset($_REQUEST['buscar']) || isset($_REQUEST['orden'])){
-        include 'vistas/vistaProductos.php';
-    }else{
-        include 'vistas/vistaPrincipal.php';
+    //Cargamos los productos
+    if (isset($_GET['categoria'])) {
+        if (isset($_REQUEST['orden'])) {
+            if (isset($_REQUEST['buscar'])) {
+                $productos = sacarProductosCategoria($_REQUEST['categoria'], $_REQUEST['orden'], $_REQUEST['buscar']);
+            } else {
+                $productos = sacarProductosCategoria($_REQUEST['categoria'], $_REQUEST['orden']);
+            }
+        } else {
+            if (isset($_REQUEST['buscar'])) {
+                $productos = sacarProductosCategoria($_REQUEST['categoria'], '', $_REQUEST['buscar']);
+            } else {
+                $productos = sacarProductosCategoria($_REQUEST['categoria']);
+            }
+        }
+    } else {
+        if (isset($_REQUEST['orden'])) {
+            if (isset($_REQUEST['buscar'])) {
+                $productos = sacarProductos($_REQUEST['orden'], $_REQUEST['buscar']);
+            } else {
+                $productos = sacarProductos($_REQUEST['orden']);
+            }
+        } else {
+            if (isset($_REQUEST['buscar'])) {
+                $productos = sacarProductos('', $_REQUEST['buscar']);
+            } else {
+                $productos = sacarProductos();
+            }
+        }
     }
+    $cantidadFilas = ceil(count($productos) / 4);
+}
+
+if (isset($_SESSION['email'])) {
+    include 'controladores/controladorSesion.php';
+} else {
+    include 'controladores/controladorInvitado.php';
 }

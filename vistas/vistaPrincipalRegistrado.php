@@ -17,13 +17,13 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <div style="display:block;width:100%;text-align:center;">
-                <h2 style="color:white;">ACCESO</h2>
+                <h2 style="color:white;">PERFIL</h2>
             </div>
-            <div class="container-fluid">
-                <div class="btn-group-vertical btn-group-lg" style="width:100%;">
-                    <button data-toggle="modal" data-target="#modal-acceso" class="btn btn-primary">Acceder</button>
-                    <button data-toggle="modal" data-target="#modal-registro" class="btn btn-warning">Registrarse</button>
-                </div>
+            <div style="display:block;width:100%;">
+                <ul style="text-decoration:none;list-style:none;">
+                    <li><a href="?perfil"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
+                    <li><a href="?salir"><span class="glyphicon glyphicon-off"></span> Cerrar sesion</a></li>
+                </ul>
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
@@ -83,13 +83,9 @@
                                 </ul>
                             </li>
                         </div>
-                        <ul class="nav navbar-nav navbar-right" style="margin-right:10px;">
-                            <li>
-                                <div class="btn-group" style="width:100%;">
-                                    <button data-toggle="modal" data-target="#modal-acceso" class="btn btn-primary navbar-btn">Acceder</button>
-                                    <button data-toggle="modal" data-target="#modal-registro" class="btn btn-warning navbar-btn">Registrarse</button>
-                                </div>
-                            </li>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="?perfil"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
+                            <li><a href="?salir"><span class="glyphicon glyphicon-off"></span> Cerrar sesion</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -159,17 +155,17 @@
                     </div>
                     <div class="modal-body">
                         <div class="container-fluid">
-                            <form action="" method="POST">
+                            <form action="/action_page.php">
                                 <div class="form-group">
-                                    <label for="email">Email:</label>
+                                    <label for="email">Email address:</label>
                                     <input type="email" class="form-control" id="email" name="email">
                                 </div>
                                 <div class="form-group">
                                     <label for="contrasena">Contraseña:</label>
-                                    <input type="password" class="form-control" id="contrasena" name="contrasena">
+                                    <input type="password" class="form-control" id="pwd" name="contrasena">
                                 </div>
 
-                                <button type="submit" class="btn btn-info btn-md" name="acceder">Acceder</button>
+                                <button type="button" class="btn btn-info btn-md" data-dismiss="modal">Acceder</button>
                                 <button type="button" class="btn btn-danger btn-md" data-dismiss="modal">Cancelar</button>
                             </form>
                         </div>
@@ -191,21 +187,21 @@
                     </div>
                     <div class="modal-body">
                         <div class="container-fluid">
-                            <form action="" method="POST">
+                            <form action="/action_page.php">
                                 <div class="form-group">
                                     <label for="email">Email:</label>
-                                    <input type="email" class="form-control" id="email" name="email">
+                                    <input type="email" class="form-control" id="email">
                                 </div>
                                 <div class="form-group">
-                                    <label for="contrasena">Contraseña:</label>
-                                    <input type="password" class="form-control" id="contrasena" name="contrasena">
+                                    <label for="pwd">Contraseña:</label>
+                                    <input type="password" class="form-control" id="pwd">
                                 </div>
                                 <div class="form-group">
-                                    <label for="confirmacionContrasena">Confirmar contraseña:</label>
-                                    <input type="password" class="form-control" id="confirmacionContrasena" name="confirmacionContrasena">
+                                    <label for="pwd">Confirmar contraseña:</label>
+                                    <input type="password" class="form-control" id="pwd">
                                 </div>
                                 <div style="display:flex;justify-content:space-around;">
-                                    <button type="submit" class="btn btn-info btn-lg" name="registrar">Registrar</button>
+                                    <button type="button" class="btn btn-info btn-lg" data-dismiss="modal">Registrar</button>
                                     <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Cancelar</button>
                                 </div>
                             </form>

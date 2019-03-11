@@ -55,6 +55,7 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
+                <!-- Logo de la pagina web -->
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="d-block" style="background-color: rgb(5,45,90);">
@@ -63,6 +64,7 @@
 
                     </div>
                 </div>
+                <!-- Barra de navegacion -->
                 <nav class="navbar navbar-inverse" style="border-radius: 0px 0px 5px 5px;">
                     <div class="container-fluid">
                         <div class="nav navbar-nav">
@@ -93,51 +95,17 @@
                         </ul>
                     </div>
                 </nav>
-                <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                    </ol>
+                <!-- Vista del producto -->
+                <?php
+                echo '<img style="float:left;" src="' . $producto['RutaImagen'] . '" alt="producto">';
+                echo '<h3>' . $producto['NombreProducto'] . '</h3>';
+                echo '<h3>Precio: <span style="color:dodgerblue;">' . $producto['Precio'] . ' €</span></h3>';
 
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <img style="display:block;margin:auto;" src="img/carousel1.jpg" alt="Escalada">
-                            <div class="carousel-caption">
-                                <h3 style="padding:10px;background-color:rgba(0,0,0,0.3)">BIENVENIDO</h3>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <img style="display:block;margin:auto;" src="img/carousel2.jpg" alt="Escalada">
-                            <div class="carousel-caption">
-                                <h3 style="padding:10px;background-color:rgba(0,0,0,0.3)">¡Impresionate con nuestros precios!</h3>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <img style="display:block;margin:auto;" src="img/carousel3.jpg" alt="Escalada">
-                            <div class="carousel-caption">
-                                <h3 style="padding:10px;background-color:rgba(0,0,0,0.3)">¡Escala como un profesional!</h3>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Left and right controls -->
-                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
+                ?>
             </div>
         </div>
         <!-- /#page-content-wrapper -->
+
         <footer class="page-footer font-small blue">
 
             <!-- Copyright -->
