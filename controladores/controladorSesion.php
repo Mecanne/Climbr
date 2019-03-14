@@ -6,7 +6,7 @@ if(isset($_REQUEST['salir'])){
     session_unset();
     session_destroy();
     $_SESSION = array();
-    header("Location: /Climbr");
+    header("Location: ./");
 }else if(isset($_REQUEST['perfil'])){
     include 'vistas/vistaPerfil.php';
 }else if(isset($_REQUEST['editar'])){

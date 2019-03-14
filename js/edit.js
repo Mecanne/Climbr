@@ -1,3 +1,4 @@
+// Script para ocultar y mostrar la contraseña al editarla
 const btnMostrar = document.getElementById('btn-mostrar');
 const inputContrasena = document.getElementById('input-contrasena');
 btnMostrar.addEventListener('click', function (e) {
