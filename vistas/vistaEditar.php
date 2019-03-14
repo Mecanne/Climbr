@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Menu principal</title>
+    <title>Editar perfil</title>
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -31,7 +31,7 @@
                     <h2 style="color:white;">CATEGORIAS</h2>
                 </li>
                 <li>
-                    <a href="/Climbr/?mostrar=todo">TODO</a>
+                    <a href="./?mostrar=todo">TODO</a>
                 </li>
                 <?php
                 for ($i = 0; $i < count($categorias); $i++) {
@@ -44,7 +44,7 @@
                     } else {
                         $textActive = '';
                     }
-                    echo '<li><a href="/Climbr?categoria=' . $categorias[$i]['IDCategoria'] . '"' .  $textActive . '>';
+                    echo '<li><a href="./?categoria=' . $categorias[$i]['IDCategoria'] . '"' .  $textActive . '>';
                     echo $categorias[$i]['NombreCategoria'];
                     echo '</a></li>';
                 }
@@ -60,7 +60,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="d-block" style="background-color: rgb(5,45,90);">
-                            <a href="/Climbr"><img class="img-responsive" src="img/logo.png" alt="LOGO"></a>
+                            <a href="./"><img class="img-responsive" src="img/logo.png" alt="LOGO"></a>
                         </div>
 
                     </div>
@@ -70,10 +70,12 @@
                     <h3 class="well" style="text-align:center;">Editar datos del usuario</h3>
                     <hr>
                     <div class="panel-body">
-                        <form action="/Climbr/?editar" method="POST">
+                        <form action="./?editar" method="POST">
                             <?php
                             echo "<h4>Email: </h4><input type=\"text\" class=\"form-control\" value=\"$usuario[EmailUsuario]\" disabled>";
-                            echo "<h4>Contraseña: </h4><input type=\"password\" class=\"form-control\" value=\"$usuario[ContrasenaUsuario]\" name=\"contrasena\">";
+                            echo "<h4>Contraseña: " . '<button type="button" class="btn btn-default btn-sm" id="btn-mostrar">
+                            <span class="glyphicon glyphicon-eye-open" id="span-ojo"></span> Mostrar contraseña
+                        </button>' . " </h4><input type=\"password\" class=\"form-control\" value=\"$usuario[ContrasenaUsuario]\" name=\"contrasena\" id=\"input-contrasena\">";
                             echo "<h4>Nombre: </h4><input type=\"text\" class=\"form-control\" value=\"$usuario[NombreUsuario]\" name=\"nombre\">";
                             echo "<h4>Direccion: </h4><input type=\"text\" class=\"form-control\" value=\"$usuario[DireccionUsuario]\" name=\"direccion\">";
                             ?>
@@ -95,6 +97,7 @@
 
         </footer>
     </div>
+    <script src="js/edit.js"></script>
 </body>
 
 </html> 

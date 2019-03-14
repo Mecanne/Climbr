@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Menu principal</title>
+    <title>Producto</title>
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -30,7 +30,7 @@
                     <h2 style="color:white;">CATEGORIAS</h2>
                 </li>
                 <li>
-                    <a href="/Climbr/?mostrar=todo">TODO</a>
+                    <a href="./?mostrar=todo">TODO</a>
                 </li>
                 <?php
                 for ($i = 0; $i < count($categorias); $i++) {
@@ -43,7 +43,7 @@
                     } else {
                         $textActive = '';
                     }
-                    echo '<li><a href="/Climbr?categoria=' . $categorias[$i]['IDCategoria'] . '"' .  $textActive . '>';
+                    echo '<li><a href="./?categoria=' . $categorias[$i]['IDCategoria'] . '"' .  $textActive . '>';
                     echo $categorias[$i]['NombreCategoria'];
                     echo '</a></li>';
                 }
@@ -101,11 +101,11 @@
                                     <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="/Climbr/?mostrar=todo">TODO</a>
+                                        <a href="./?mostrar=todo">TODO</a>
                                     </li>
                                     <?php
                                     for ($i = 0; $i < count($categorias); $i++) {
-                                        echo '<li><a href="/Climbr?categoria=' . $categorias[$i]['IDCategoria'] . '">';
+                                        echo '<li><a href="./?categoria=' . $categorias[$i]['IDCategoria'] . '">';
                                         echo $categorias[$i]['NombreCategoria'];
                                         echo '</a></li>';
                                     }

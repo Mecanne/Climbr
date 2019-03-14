@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Menu principal</title>
+    <title>Productos </title>
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -30,7 +30,7 @@
                     <h2 style="color:white;">CATEGORIAS</h2>
                 </li>
                 <li>
-                    <a href="/Climbr/?mostrar=todo">TODO</a>
+                    <a href="?mostrar=todo">TODO</a>
                 </li>
                 <?php
                 for ($i = 0; $i < count($categorias); $i++) {
@@ -43,7 +43,7 @@
                     } else {
                         $textActive = '';
                     }
-                    echo '<li><a href="/Climbr?categoria=' . $categorias[$i]['IDCategoria'] . '"' .  $textActive . '>';
+                    echo '<li><a href="./?categoria=' . $categorias[$i]['IDCategoria'] . '"' .  $textActive . '>';
                     echo $categorias[$i]['NombreCategoria'];
                     echo '</a></li>';
                 }
@@ -86,7 +86,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="d-block" style="background-color: rgb(5,45,90);">
-                            <a href="/Climbr"><img class="img-responsive" src="img/logo.png" alt="LOGO"></a>
+                            <a href="./"><img class="img-responsive" src="img/logo.png" alt="LOGO"></a>
                         </div>
 
                     </div>
@@ -99,11 +99,11 @@
                                     <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="/Climbr">TODO</a>
+                                        <a href="./?mostrar=todo">TODO</a>
                                     </li>
                                     <?php
                                     for ($i = 0; $i < count($categorias); $i++) {
-                                        echo '<li><a href="/Climbr?categoria=' . $categorias[$i]['IDCategoria'] . '">';
+                                        echo '<li><a href="./?categoria=' . $categorias[$i]['IDCategoria'] . '">';
                                         echo $categorias[$i]['NombreCategoria'];
                                         echo '</a></li>';
                                     }
@@ -158,12 +158,17 @@
                                 if (isset($_REQUEST['buscar'])) {
                                     echo '<input type="hidden" name="buscar" value="' . $_REQUEST['buscar'] . '">';
                                 }
+                                if(isset($_REQUEST['orden'])){
+                                    $orden = $_REQUEST['orden'];
+                                }else{
+                                    $orden = '';
+                                }
                                 ?>
                                 <div class="input-group">
                                     <select name="orden" id="" class="form-control">
-                                        <option value="alf">Orden alfabético</option>
-                                        <option value="asc">Precio ascendente</option>
-                                        <option value="desc">Precio descendente</option>
+                                        <option value="alf" <?php if($orden == 'alf') echo 'selected' ?>>Orden alfabético</option>
+                                        <option value="asc" <?php if($orden == 'asc') echo 'selected' ?>>Precio ascendente</option>
+                                        <option value="desc" <?php if($orden == 'desc') echo 'selected' ?>>Precio descendente</option>
                                     </select>
                                     <div class="input-group-btn">
                                         <button class="btn btn-default" type="submit">
@@ -194,7 +199,7 @@
                     for ($i = 0; $i < $productosEnFila; $i++) {
                         echo '<div class="col-md-3">
                                     <div class="thumbnail">
-                                        <a href="?producto=' . $productos[$numeroProducto]['IDProducto'] . '"> <img src="' . $productos[$numeroProducto]['RutaImagen'] . '" alt="Producto" title="Ver producto" style="width:100%;"></a>
+                                        <a href="./?producto=' . $productos[$numeroProducto]['IDProducto'] . '"> <img src="' . $productos[$numeroProducto]['RutaImagen'] . '" alt="Producto" title="Ver producto" style="width:100%;"></a>
                                         <div class="caption">
                                             <p>' . $productos[$numeroProducto]['NombreProducto'] . '</p>
                                         </div>
